@@ -119,3 +119,34 @@ INNER JOIN departments
 ON departments.id = degrees.department_id
 WHERE departments.name = 'Dipartimento di Matematica'  
 GROUP BY id
+
+Queries con GROUP BY
+
+1.
+
+/* Contare quanti iscritti ci sono stati ogni anno */
+
+SELECT COUNT(enrolment_date), YEAR(enrolment_date)
+FROM students
+GROUP BY YEAR(enrolment_date)
+
+2.
+
+/* Contare gli insegnanti che hanno l'ufficio nello stesso edificio */
+
+SELECT teachers.office_address, COUNT(teachers.office_address)
+FROM teachers
+GROUP BY office_address
+
+3.
+
+/* Calcolare la media dei voti di ogni appello d'esame */
+
+SELECT AVG(vote) AS 'media_voti', exam_id 
+from exam_student
+GROUP BY exam_id
+
+4.
+SELECT COUNT(*), degrees.department_id
+FROM degrees
+GROUP BY degrees.department_id
